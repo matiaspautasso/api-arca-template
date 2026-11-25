@@ -19,7 +19,7 @@ Detalle del flujo, herramientas y límites: **[docs/funcionamiento.md](docs/func
 
 ## Requisitos
 
-- Docker (con Docker Compose), Git y Python 3.12+. Recomendadas: GitHub CLI y Railway CLI.
+- Docker (con Docker Compose), Git y Python 3.12+. Recomendadas: GitHub CLI, Railway CLI y, si tu agente no tiene una guía de buenas prácticas, las [skills de Matt Pocock](https://github.com/mattpocock/skills).
 - Clave fiscal con **Mis Comprobantes** habilitado (y **Comprobantes en Línea** para los PDFs).
 
 Chequealas con `bash scripts/check_herramientas.sh`. Cómo instalar cada una: **[docs/herramientas.md](docs/herramientas.md)**.

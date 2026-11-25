@@ -20,7 +20,7 @@ Usá `127.0.0.1`, no `localhost`: en Windows, `localhost` prueba IPv6 primero y 
 
 ## Reglas
 
-- **TDD**: todo cambio de comportamiento va test-first. Escribí el test, miralo fallar y recién después escribí el código. Los tests nunca tocan ARCA: el worker se reemplaza por fakes (`FakeClient` en `tests/test_api.py`) y los parsers se prueban con fixtures HTML.
+- **TDD**: todo cambio de comportamiento va test-first. Escribí el test, miralo fallar y recién después escribí el código. Los tests nunca tocan ARCA: el worker se reemplaza por fakes (`FakeClient` en `tests/test_api.py`) y los parsers se prueban con fixtures HTML. Si tenés instaladas las skills de Matt Pocock (`docs/herramientas.md`), cargá `tdd` antes de cambiar código y `diagnosing-bugs` ante una falla de ARCA.
 - **Una sola sesión de clave fiscal a la vez.** Una réplica, un worker (`app/worker.py`), y todo Playwright corre en el hilo del worker. No abras navegadores en paralelo, no agregues réplicas y no hagas que el cron loguee.
 - **ARCA real solo con confirmación del usuario.** Logins repetidos pueden bloquear la clave fiscal.
 - **Selectores solo en `app/rcel_selectors.py`.** Antes de cada acción, confirmá la pantalla esperada. Nunca hagas clics a ciegas.

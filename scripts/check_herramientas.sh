@@ -6,8 +6,8 @@
 faltan_requeridas=0
 faltantes=()
 
-ok()    { printf '  [OK]    %-16s %s\n' "$1" "$2"; }
-falta() { printf '  [FALTA] %-16s %s\n' "$1" "$2"; faltantes+=("$1"); }
+ok()    { printf '  [OK]    %-18s %s\n' "$1" "$2"; }
+falta() { printf '  [FALTA] %-18s %s\n' "$1" "$2"; faltantes+=("$1"); }
 
 version_de() { "$@" 2>/dev/null | head -n1; }
 
@@ -51,6 +51,17 @@ else falta railway "CLI del host (Railway): deploy, logs, variables"; fi
 
 if command -v node >/dev/null; then ok node "$(version_de node --version)"
 else falta node "solo para instalar la CLI de Railway con npm o sumar un frontend"; fi
+
+echo "Guía de desarrollo para agentes (recomendada si no usás otra):"
+
+# Plugin de skills de Matt Pocock (TDD, code review, diagnóstico, diseño...).
+# Detección heurística: plugin de Claude Code, de Codex, o skills copiadas al repo.
+skills=""
+grep -qs '"mattpocock-skills' "$HOME/.claude/plugins/installed_plugins.json" && skills+="Claude Code "
+grep -rqs --include='*.json' --include='*.toml' 'mattpocock-skills' "$HOME/.codex" 2>/dev/null && skills+="Codex "
+ls -d .agents/skills/tdd .claude/skills/tdd >/dev/null 2>&1 && skills+="repo "
+if [[ -n $skills ]]; then ok mattpocock-skills "instalado en: ${skills% }"
+else falta mattpocock-skills "skills de buenas prácticas (tdd, code-review, diagnosing-bugs...)"; fi
 
 echo
 if (( ${#faltantes[@]} )); then
