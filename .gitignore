@@ -1,0 +1,28 @@
+# Secretos: NUNCA versionar
+.env
+.env.*
+!.env.example
+secrets/
+*.key
+*.pem
+
+# Salidas de diagnóstico de Playwright (screenshots/HTML con datos reales de ARCA)
+_spike_out/
+downloads/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Config local de agentes
+.claude/settings.local.json

@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: arca
+      POSTGRES_PASSWORD: arca
+      POSTGRES_DB: arca
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      # Solo loopback (credenciales de desarrollo). 5440 para no chocar con un
+      # Postgres local; sirve para correr `alembic` y herramientas desde el host.
+      - "127.0.0.1:5440:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arca"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    # Credenciales ARCA (ARCA_CUIT/PASSWORD/EMPRESA/LOGIN_URL) desde .env.
+    env_file: .env
+    # Estas sobreescriben lo que venga de .env.
+    environment:
+      DATABASE_URL: postgresql+psycopg://arca:arca@db:5432/arca
+      HEADLESS: "true"
+      PLAYWRIGHT_NO_SANDBOX: "true"
+    ports:
+      - "8000:8000"
+    shm_size: "1gb"          # Chromium necesita /dev/shm amplio
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
