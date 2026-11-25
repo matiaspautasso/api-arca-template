@@ -2,6 +2,10 @@
 
 FastAPI + Postgres que scrapea el portal de ARCA (ex AFIP) con Playwright: ventas (Mis Comprobantes > Emitidos), compras (> Recibidos) y PDFs de ventas (Comprobantes en Línea). Cómo funciona: `docs/funcionamiento.md`. Personalización: `docs/personalizar.md`.
 
+## Herramientas
+
+Al empezar una sesión, corré `bash scripts/check_herramientas.sh`. Si falta alguna, seguí el **chequeo guiado** de `docs/herramientas.md`: preguntá al usuario qué instalar y esperá su respuesta.
+
 ## Comandos
 
 ```bash

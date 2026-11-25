@@ -19,9 +19,10 @@ Detalle del flujo, herramientas y límites: **[docs/funcionamiento.md](docs/func
 
 ## Requisitos
 
-- Docker (con Docker Compose).
-- Python 3.12+ (solo para correr los tests fuera de Docker).
+- Docker (con Docker Compose), Git y Python 3.12+. Recomendadas: GitHub CLI y Railway CLI.
 - Clave fiscal con **Mis Comprobantes** habilitado (y **Comprobantes en Línea** para los PDFs).
+
+Chequealas con `bash scripts/check_herramientas.sh`. Cómo instalar cada una: **[docs/herramientas.md](docs/herramientas.md)**.
 
 ## Arranque rápido
 
@@ -55,7 +56,7 @@ Los tests corren contra un Postgres real en una base aparte (`arca_test`) y **nu
 
 ## Con Claude Code o Codex
 
-Abrí el repo con tu agente y pedile cambios en lenguaje natural ("sumá la columna Neto No Gravado a ventas"). Las reglas del proyecto están en `AGENTS.md`, y `CLAUDE.md` las importa: TDD, una sola sesión de ARCA, selectores centralizados y secretos fuera del código. Pedile siempre que **no** pruebe contra ARCA real sin tu confirmación.
+Abrí el repo con tu agente y pedile cambios en lenguaje natural ("sumá la columna Neto No Gravado a ventas"). Las reglas del proyecto están en `AGENTS.md`, y `CLAUDE.md` las importa: TDD, una sola sesión de ARCA, selectores centralizados y secretos fuera del código. Al empezar, el agente chequea tus herramientas y te pregunta si querés que instale las que faltan. Pedile siempre que **no** pruebe contra ARCA real sin tu confirmación.
 
 ## Licencia
 
